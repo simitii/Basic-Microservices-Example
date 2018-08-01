@@ -1,0 +1,30 @@
+# Microservice CONFIGURATION
+
+spring:
+  
+  application.name: three-service
+  velocity.enabled: false
+
+info.component: Three-Service
+
+endpoints:
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+  health:
+    sensitive: false
+
+management:
+  contextPath: /manage
+
+# Microservice Port
+server:
+  contextPath: /
+  port: 8083
+
+# Configure this Discovery Server
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka

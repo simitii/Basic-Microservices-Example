@@ -1,0 +1,20 @@
+# Eureka-Service Microservice CONFIGURATION
+
+spring:
+  application.name: eureka-service
+
+info.component: Eureka-Service
+
+server:
+  port: 8761
+
+eureka:
+  instance:
+    hostname: localhost
+    metadataMap:
+      instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+  server:
+    renewal-percent-threshold: 0.8
