@@ -1,4 +1,4 @@
-package com.demo.microservices.controller;
+package com.demo.microservices.apigateaway.controller;
 
 
 import org.springframework.web.bind.annotation.GetMapping;

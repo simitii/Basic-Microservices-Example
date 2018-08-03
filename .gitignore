@@ -1,3 +1,6 @@
 *.docx
 *.pdf
 target/
+.settings/
+.project
+.classpath
