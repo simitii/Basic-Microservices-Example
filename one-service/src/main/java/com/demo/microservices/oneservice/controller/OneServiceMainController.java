@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.util.MultiValueMap;
 import org.springframework.util.LinkedMultiValueMap;
@@ -38,13 +37,6 @@ public class OneServiceMainController {
 		MultiValueMap<String, Object> parts = new LinkedMultiValueMap<String, Object>();
 		parts.add("message", messageForm.getMessage());
 		restTemplate.postForEntity(serviceUrl + "/messageFromOtherService", parts, String.class);
-		return "redirect:/";
-	}
-
-	@RequestMapping(value = { "/messageFromOtherService" }, method = RequestMethod.POST)
-	public String messageProcessor(@RequestParam(value="message", defaultValue="New Message") 
-		String message){
-		this.message = message;
 		return "redirect:/";
 	}
 
