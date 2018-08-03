@@ -2,6 +2,7 @@
 
 spring:
   application.name: eureka-service
+  jmx.default-domain: ${spring.application.name}
 
 info.component: Eureka-Service
 

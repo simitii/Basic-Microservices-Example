@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8" />
+      <title>Welcome</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+   </head>
+   <body>
+      <h1>One Service</h1>
+      <h3>
+          Message:
+      </h3>
+      <p th:text="${message}"></p>
+      <h3>
+          Send Message
+      </h3>
+      <form th:action="@{/sendMessage}"
+      th:object="${messageForm}" method="POST">
+      New Message:
+      <input type="text" th:field="*{message}" />    
+      <br/>   
+      <input type="submit" value="Send" />
+   </form>
+   </body>
+    
+</html>

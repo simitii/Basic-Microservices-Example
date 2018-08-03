@@ -1,8 +1,8 @@
 # API-Gateaway Microservice CONFIGURATION
 
 spring:
-  
   application.name: api-gateway
+  jmx.default-domain: ${spring.application.name}
   velocity.enabled: false
 
 info.component: API-Gateway
@@ -28,13 +28,13 @@ zuul:
   routes:
     one:
       path: /one-service/**
-      serviceId: One-Service
+      serviceId: one-service
     two:
       path: /two-service/**
-      serviceId: Two-Service
+      serviceId: two-service
     three:
       path: /three-service/**
-      serviceId: Three-Service
+      serviceId: three-service
 
 # Configure this Discovery Server
 eureka:

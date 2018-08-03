@@ -1,8 +1,8 @@
 # Microservice CONFIGURATION
 
 spring:
-  
   application.name: three-service
+  jmx.default-domain: ${spring.application.name}
   velocity.enabled: false
 
 info.component: Three-Service
