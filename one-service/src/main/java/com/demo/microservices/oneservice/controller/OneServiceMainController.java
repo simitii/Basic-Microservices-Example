@@ -6,19 +6,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import com.netflix.discovery.EurekaClient;
-import com.netflix.appinfo.InstanceInfo;
-
 import com.demo.microservices.oneservice.form.MessageForm;
 import com.demo.microservices.oneservice.rabbitmq.QueueEnum;
 import com.demo.microservices.oneservice.rabbitmq.Sender;
 
 @Controller
 public class OneServiceMainController {
-	@Autowired
-	private EurekaClient eurekaClient;
-
 	@Autowired
 	private Sender sender;
 	

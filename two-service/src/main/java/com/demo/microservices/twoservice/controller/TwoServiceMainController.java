@@ -6,14 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.util.MultiValueMap;
-import org.springframework.util.LinkedMultiValueMap;
-
-import com.netflix.discovery.EurekaClient;
-import com.netflix.appinfo.InstanceInfo;
-
 import com.demo.microservices.twoservice.form.MessageForm;
 import com.demo.microservices.twoservice.rabbitmq.QueueEnum;
 import com.demo.microservices.twoservice.rabbitmq.Sender;
@@ -21,10 +13,6 @@ import com.demo.microservices.twoservice.rabbitmq.Sender;
 
 @Controller
 public class TwoServiceMainController {
-	
-	@Autowired
-	private EurekaClient eurekaClient;
-
 	@Autowired
 	private Sender sender;
 	
