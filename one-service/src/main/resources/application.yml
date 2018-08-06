@@ -4,6 +4,17 @@ spring:
   application.name: one-service
   jmx.default-domain: ${spring.application.name}
   velocity.enabled: false
+  # TO SOLVE : Method org.postgresql.jdbc.PgConnection.createClob() is not yet implemented.
+  jpa.properties.hibernate.temp.use_jdbc_metadata_defaults: false
+  # The SQL dialect makes Hibernate generate better SQL for the chosen database
+  jpa.properties.hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+  # Hibernate ddl auto (create, create-drop, validate, update)
+  jpa.hibernate.ddl-auto: update
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: toor 
 
 info.component: One-Service
 
