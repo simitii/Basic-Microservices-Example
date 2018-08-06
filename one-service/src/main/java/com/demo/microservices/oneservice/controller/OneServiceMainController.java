@@ -6,19 +6,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.util.MultiValueMap;
-import org.springframework.util.LinkedMultiValueMap;
 
 import com.netflix.discovery.EurekaClient;
 import com.netflix.appinfo.InstanceInfo;
 
 import com.demo.microservices.oneservice.form.MessageForm;
+import com.demo.microservices.oneservice.rabbitmq.QueueEnum;
+import com.demo.microservices.oneservice.rabbitmq.Sender;
 
 @Controller
 public class OneServiceMainController {
 	@Autowired
 	private EurekaClient eurekaClient;
+
+	@Autowired
+	private Sender sender;
 	
 	private String message = "Message from One-Service";
 
@@ -32,16 +34,12 @@ public class OneServiceMainController {
 
 	@RequestMapping(value = { "/sendMessage" }, method = RequestMethod.POST)
 	public String messageSender(Model model, @ModelAttribute("personForm") MessageForm messageForm){
-		String serviceUrl = this.getServiceUrl("two-service");
-		RestTemplate restTemplate = new RestTemplate();
-		MultiValueMap<String, Object> parts = new LinkedMultiValueMap<String, Object>();
-		parts.add("message", messageForm.getMessage());
-		restTemplate.postForEntity(serviceUrl + "/messageFromOtherService", parts, String.class);
+		String messageToSent = messageForm.getMessage();
+		sender.send(QueueEnum.TWO_SERVER, messageToSent);
 		return "redirect:/";
 	}
 
-	public String getServiceUrl(String serviceName) {
-		InstanceInfo instance = eurekaClient.getNextServerFromEureka(serviceName, false);
-		return instance.getHomePageUrl();
+	public void setMessage(String s){
+		message = s;
 	}
 }

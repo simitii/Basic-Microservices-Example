@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.demo.microservices</groupId>
-	<artifactId>euroka-service</artifactId>
+	<artifactId>eureka-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>Euroka Service</name>
-	<description>Euroka Service in microservices experimental project</description>
+	<name>Eureka Service</name>
+	<description>Eureka Service in microservices experimental project</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

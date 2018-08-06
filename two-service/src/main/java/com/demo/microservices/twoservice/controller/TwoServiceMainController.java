@@ -15,6 +15,8 @@ import com.netflix.discovery.EurekaClient;
 import com.netflix.appinfo.InstanceInfo;
 
 import com.demo.microservices.twoservice.form.MessageForm;
+import com.demo.microservices.twoservice.rabbitmq.QueueEnum;
+import com.demo.microservices.twoservice.rabbitmq.Sender;
 
 
 @Controller
@@ -22,6 +24,9 @@ public class TwoServiceMainController {
 	
 	@Autowired
 	private EurekaClient eurekaClient;
+
+	@Autowired
+	private Sender sender;
 	
 	private String message = "Message from Two-Service";
 
@@ -35,23 +40,12 @@ public class TwoServiceMainController {
 
 	@RequestMapping(value = { "/sendMessage" }, method = RequestMethod.POST)
 	public String messageSender(Model model, @ModelAttribute("personForm") MessageForm messageForm){
-		String serviceUrl = this.getServiceUrl("one-service");
-		RestTemplate restTemplate = new RestTemplate();
-		MultiValueMap<String, Object> parts = new LinkedMultiValueMap<String, Object>();
-		parts.add("message", messageForm.getMessage());
-		restTemplate.postForEntity(serviceUrl + "/messageFromOtherService", parts, String.class);
+		String messageToSent = messageForm.getMessage();
+		sender.send(QueueEnum.ONE_SERVER, messageToSent);
 		return "redirect:/";
 	}
 
-	@RequestMapping(value = { "/messageFromOtherService" }, method = RequestMethod.POST)
-	public String messageProcessor(@RequestParam(value="message", defaultValue="New Message") 
-		String message){
-		this.message = message;
-		return "redirect:/";
-	}
-
-	public String getServiceUrl(String serviceName) {
-		InstanceInfo instance = eurekaClient.getNextServerFromEureka(serviceName, false);
-		return instance.getHomePageUrl();
+	public void setMessage(String s){
+		message = s;
 	}
 }

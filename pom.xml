@@ -22,7 +22,6 @@
       <module>eureka-service</module>
       <module>one-service</module>
       <module>two-service</module>
-      <module>three-service</module>
       <module>api-gateaway</module>
   </modules>
 

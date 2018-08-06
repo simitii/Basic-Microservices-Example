@@ -32,9 +32,6 @@ zuul:
     two:
       path: /two-service/**
       serviceId: two-service
-    three:
-      path: /three-service/**
-      serviceId: three-service
 
 # Configure this Discovery Server
 eureka:
